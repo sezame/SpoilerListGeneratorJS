@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>SpoilerListGenerator addon</title>
+        <link rel="stylesheet" type="text/css" href="view.css" media="all">
+        <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+    <body id="main_body" >
+        <img id="top" src="top.png" alt="">
+        <div id="form_container">
+            <h1><a>SpoilerListGenerator addon</a></h1>
+            <form id="form_883766" class="appnitro"  method="post" action="" onsubmit="return false;">
+                <div class="form_description">
+                    <h2>SpoilerListGenerator addon</h2>
+                    <p>Расширение возможностей работы SpoilerListGenerator с ссылками на изображения</p><p>Вы можете сохранить эту страничку с уже введеными, удобными вам значениями и открывать локально</p>
+                </div>
+                <ul >
+                    <li id="li_template_count" >
+                        <label class="description" for="element_template_count">Количество элементов для замены</label>
+                        <div>
+                            <select class="element select small" id="element_template_count" name="element_template_count">
+                                <option value="1" >1</option>
+                                <option value="2" selected="selected">2</option>
+                                <option value="3" >3</option>
+                                <option value="4" >4</option>
+                                <option value="5" >5</option>
+                                <option value="6" >6</option>
+                                <option value="7" >7</option>
+                                <option value="8" >8</option>
+                                <option value="9" >9</option>
+                                <option value="10" >10</option>
+                            </select>
+                        </div>
+                        <p class="guidelines" id="guide_template_count"><small>Бывает так, что нужно показать не только скринлист, а ещё например обложку этого видео, или эскизы скриншотов из видео (а их несколько) или, учитывая, что хостинги дохнут хотелось бы и альтернативные скринлисты видеть, но SpoilerListGenerator позволяет вставлять только одну-единственную ссылку для одного видео заменяя текст <b>%IMG%</b>, что не очень удобно.<br><br>Данная фича позволяет исправить этот недостаток.<br><br>Просто отредактируйте свой шаблон, там где хотите, чтобы были другие ссылки пишите <b>%IMG2%</b> <b>%IMG3%</b> (<b>%IMG1%</b> это то, что будет вместо %IMG%) и т.д.<br><br><b>Примечание:</b> если вы хотите показать несколько  эскизов (или картинок) в ряд, писать нужно только один раз.</small></p>
+                    </li>
+                    <li id="li_replacetext" >
+                        <label class="description" for="element_replacetext">Текст вместо ссылок </label>
+                        <div>
+                            <textarea id="element_replacetext" name="element_replacetext" class="element textarea small"></textarea> 
+                        </div>
+                        <p class="guidelines" id="guide_replacetext"><small>К сожалению, spoiler list generator в текущей версии не может сгенерировать результат без ссылок, поэтому снимаем галочку "Принимать только ссылки", и вместо ссылок копируем  текст из поля и жмем кнопочку <b>"Вставить"</b> в SpoilerListGenerator (там 1000 элементов, если надо больше - просто жмем <b>"Вставить"</b> ещё раз)</small></p>
+                    </li>
+                    <li id="li_spoiler_list_generator_text" >
+                        <label class="description" for="element_spoiler_list_generator_text">Сюда вставить результат из SpoilerListGenerator </label>
+                        <div>
+                            <textarea id="element_spoiler_list_generator_text" name="element_2" class="element textarea small"></textarea> 
+                        </div>
+                        <p class="guidelines" id="guide_spoiler_list_generator_text"><small><b style="color:red;">Важно!</b><br><b>%IMG1%</b> должен использоваться только один раз на один элемент (видео), для правильного определения количества элементов и сопоставления с количеством ссылок в дальнейшем</small></p>
+                    </li>
+                    <li class="section_break">
+                        <h3>Ссылки для замены</h3>
+                        <p></p>
+                    </li>
+                    <li id="li_urls_img1" >
+                        <label class="description" for="element_urls_img1">Сюда вставить ссылки (прямые или уже эскизы с bbcode) для <b style="color:red;">%IMG1%</b><br>Количество должно быть кратно количеству элементов результата из SpoilerListGenerator</label>
+                        <div>
+                            <textarea id="element_urls_img1" name="element_urls_img1" class="element textarea small"></textarea> 
+                        </div>
+                    </li>
+                    <li id="li_wrap_img1">
+                        <span>
+                        <input id="element_wrap_img1" name="element_wrap_img1" class="element checkbox" type="checkbox" value="1">
+                        <label class="choice" for="element_wrap_img1">Обрамить [img]...[/img] (для простых ссылок)?</label>
+                        </span> 
+                    </li>
+                    <li id="li_count_img1" >
+                        <label class="description" for="element_count_img1">Количество картинок (эскизов) в ряду (для <b style="color:red;">%IMG1%</b>)<br/>(0 не разбивать по рядам): </label>
+                        <div>
+                            <input type="number" id="element_count_img1" name="element_count_img1" class="element text medium" type="text" maxlength="255" value="0"/> 
+                        </div>
+                    </li>
+                    <li class="section_break" id="result_options">
+                        <h3>Настройка результата</h3>
+                        <p></p>
+                    </li>
+                    <li id="li_split_by_items" >
+                        <label class="description" for="element_split_by_items">Разбивать по количеству элементов (0 - не разбивать) </label>
+                        <div>
+                            <input id="element_split_by_items" name="element_split_by_items" class="element text medium" min="0"  type="number" value="0"/> 
+                        </div>
+                        <p class="guidelines" id="guide_split_by_items"><small>К сожалению, некоторые форумы ограничивают размер поста, из-за чего всё не помещается и приходится разделять содержимое на несколько постов.
+                            В этом поле предлагается выбрать количество видео, информация о которых будет показана в одном посте.
+                            Введите максимальное количество видео.</small>
+                        </p>
+                    </li>
+                    <li id="li_split_by_symbols" >
+                        <label class="description" for="element_split_by_symbols">Разбивать по количеству символов (0 - не разбивать) </label>
+                        <div>
+                            <input id="element_split_by_symbols" name="element_split_by_symbols" class="element text medium" type="number" min="0"value="0"/> 
+                        </div>
+                        <p class="guidelines" id="guide_split_by_symbols"><small>К сожалению, некоторые форумы ограничивают размер поста, из-за чего всё не помещается и приходится разделять содержимое на несколько постов.<br>
+                            Введите максимальное количество символов (учитывайте, что первый пост всегда короче чем остальные за счет оформления, возможно огромные описания стоит выносить в отдельные посты?).</small>
+                        </p>
+                    </li>                    
+                    <li id="li_offset_first_post" >
+                        <label class="description" for="element_offset_first_post">Первый пост (описание) уже занимает столько символов:</label>
+                        <div>
+                            <input id="element_offset_first_post" name="element_offset_first_post" class="element text medium" type="number" min="0" value="0"/> 
+                        </div>
+                        <p class="guidelines" id="guide_offset_first_post"><small>К сожалению, некоторые форумы ограничивают размер поста, из-за чего всё не помещается и приходится разделять содержимое на несколько постов.<br>
+                            Кроме того, самый первый пост содержит описание, которое может быть довольно длинным.<br>
+                        	Укажите его длину в этом поле, если нужно</small>
+                        </p>
+                    </li>
+                    <li id="li_wrap_result_with" >
+                        <label class="description" for="element_wrap_result_with">Обрамить каждую часть результата по шаблону<br>Очистите поле, если не надо</label>
+                        <div>
+                            <textarea id="element_wrap_result_with" name="element_wrap_result_with" class="element textarea medium">[spoiler="Скриншоты, скринлисты и техданные к роликам (часть %CURRENT% из %TOTAL%)"]%RESULT%[/spoiler]</textarea> 
+                        </div>
+                        <p class="guidelines" id="guide_wrap_result_with"><small>Если вы разбиваете на несколько частей, то, как правило, содержимое поста находится в спойлере.<br>
+                            Вы можете указать шаблон, которым можно "обернуть" результат вывода.<br>
+                            В месте, где должен быть результат, пишите <b>%RESULT%</b><br>
+                            Если вы хотите указывать номер текущей части и/или количество частей, используйте <b>%CURRENT%</b> и  <b>%TOTAL%</b> соответственно.</small>
+                        </p>
+                    </li>
+                    <li class="buttons">
+                        <input type="hidden" name="form_id" value="883766" />
+                        <input id="saveForm" class="button_text" type="submit" name="submit" value="Получить результат" />
+                    </li>
+                    <li class="section_break" id="li_all_results">
+                        <h3>Результаты</h3>
+                        <p></p>
+                    </li>
+                    <li id="li_result1" >
+                        <label class="description" for="element_result1">Результат (часть 1 из 1): </label>
+                        <div>
+                            <textarea id="element_result1" name="element_result1" class="element textarea medium"></textarea> 
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <div id="footer">
+                Generated by <a href="http://www.phpform.org">pForm</a>
+            </div>
+        </div>
+        <img id="bottom" src="bottom.png" alt="">
+    </body>
+</html>
