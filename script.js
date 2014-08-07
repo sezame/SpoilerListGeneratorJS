@@ -43,7 +43,7 @@ $(function() {
 		$("#element_result1").val("");
 
 		// удаляем пустую последнюю строку и получаем элементы
-		var spoiler_list_generator_text = $("#element_spoiler_list_generator_text").val().replace(/\r\n$|\r$|\n$/g, '');
+		var spoiler_list_generator_text = $.trim($("#element_spoiler_list_generator_text").val()).replace(/\r\n$|\r$|\n$/g, '');
 		var lines = spoiler_list_generator_text.split(/\r\n|\r|\n/); 
 		lines_count = (lines)?lines.length:0;
 
